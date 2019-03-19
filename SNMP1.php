@@ -19,7 +19,7 @@ function inset_val(&$Zaehler,&$conn,$ip_addr,$object_id1,$object_id2) {
     $sql = "use drucker; INSERT INTO`test`(`Anzahl_Drucker`, `Name`, `ORT`)VALUES($Zaehler,'$Name[1]','$Ort[1]');";
 
     if ($conn->multi_query($sql) === TRUE) {
-        #echo "\nZeile wurde hinzugefügt";
+        echo "\nZeile wurde hinzugefügt";
     } else {
         echo "\nNZeile wurde nicht hinzugefügt" . $conn->error;
     }
@@ -69,7 +69,7 @@ function data_from_Abfrage_to_test(&$conn) {
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            #echo "\nName: " . $row["Name"]. " - Ort: " . $row["ORT"]. " - IP_Adresse " . $row["IP_Adresse"];
+            echo "\nName: " . $row["Name"]. " - Ort: " . $row["ORT"]. " - IP_Adresse " . $row["IP_Adresse"];
             inset_val($count,$conn,$row["IP_Adresse"],$row["Name"], $row["ORT"]);
             $conn->next_result();
         }
@@ -101,7 +101,6 @@ $conn_read->query($sql);
 
 $zaehler = data_from_Abfrage_to_test($conn_read);
 
-#UGLY HTML
 echo "<html lang=\"de\">
 
 <head>
